@@ -4,12 +4,12 @@
 
 int main(void)
 {
-  stackT stack;    
-  char str[101];   
-  char *traverse;  
+  stackT stack;
+  char str[101];
+  char *traverse;
 
   printf("Enter a string: ");
-  gets(str);  
+  gets(str);
 
   /*
    * Initialize the stack.  Make it at least

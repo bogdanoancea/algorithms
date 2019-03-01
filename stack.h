@@ -24,8 +24,8 @@ void destroy(stackT* sp);
 
 /*
  * Functions: push, pop
- * Usage: 
- * push(&stack, element); 
+ * Usage:
+ * push(&stack, element);
  * element = pop(&stack);
  */
 void push(stackT* sp, stackElementT e);
@@ -33,7 +33,8 @@ stackElementT pop(stackT * sp);
 
 /*
  * Functions: isEmpty, isFull
- * /
+ */
+
 int isEmpty(stackT* sp);
 int isFull(stackT* sp);
 
