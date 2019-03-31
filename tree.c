@@ -135,8 +135,8 @@ void postorder(BTree root, void (*Visit)(void*)){
     }
 }
 
-void Visit(void *key) {
-    printf("cheia %d ", *(int*)key);
+void visit(void *key) {
+    printf("cheia %d  \n", *(int*)key);
 }
 
 
