@@ -61,13 +61,13 @@ int main()
     insert(root, &x[9]);
     insert(root, &x[10]);
 
-    printf("Arborele afisat in preordine:\n");
-    preorder(root, Visit);
+    printf("\nArborele afisat in preordine:\n");
+    preorder(root, visit);
 
-    printf("Arborele afisat in postordine:\n");
-    postorder(root, Visit);
+    printf("\nArborele afisat in postordine:\n");
+    postorder(root, visit);
 
-    printf("Arbore afisat in inordine:\n");
-    inorder(root, Visit);
+    printf("\nArbore afisat in inordine:\n");
+    inorder(root, visit);
     return 0;
 }
