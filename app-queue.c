@@ -21,7 +21,7 @@ int main() {
 	Queue Q = new();
 	while (optiune != 7) {
 		printf("1. Inserati un element in coada. \n");
-		printf("2. Inlaturati un element din coada. \n");
+		printf("2. Extrageti un element din coada. \n");
 		printf("3. Afisati toate elementele cozii. \n");
         printf("4. Afisati elementul din varful cozii. \n");
         printf("5. Afisati elementul de la sfarsitul cozii. \n");
