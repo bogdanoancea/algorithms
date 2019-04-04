@@ -12,13 +12,13 @@ typedef int (*PFC)(void*, void*);    //pointer la functie
 
 
 // initializare lista vida (constructor)
-List new(void);
+List newList(void);
 
-void delete(List L); // sterge lista (destructor)
+void deleteList(List L); // sterge lista (destructor)
 
-int isEmpty(List L); // test lista vida
+int isEmptyList(List L); // test lista vida
 
-int size(List L);    // lungime lista
+int sizeList(List L);    // lungime lista
 
 // intoarce adresa elementului din pozitia p
 void *get(List L, Iterator p);
@@ -35,7 +35,7 @@ Iterator find(List L, void *x, PFC equal);
 void *removeElem(List L, Iterator p);
 
 // insereaza un element inainte de pozitia p
-void insert(List L, Iterator p, void *x);
+void insertList(List L, Iterator p, void *x);
 
 // intoarce pozitia primului element din lista
 Iterator first(List L);

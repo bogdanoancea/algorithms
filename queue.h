@@ -5,13 +5,13 @@ typedef struct queue *Queue;
 
 //Queue new(int);
 
-Queue new();
+Queue newQueue();
 
-void delete(Queue *pQ);
+void deleteQueue(Queue Q);
 
-int isEmpty(Queue Q);
+int isEmptyQueue(Queue Q);
 
-int isFull(Queue Q);
+int isFullQueue(Queue Q);
 
 void enq(Queue Q, void *x);
 
@@ -23,6 +23,6 @@ void* deq(Queue Q);
 
 void display(Queue Q);
 
-int size( Queue Q);
+int sizeQueue( Queue Q);
 
 #endif // _QUEUE_H_

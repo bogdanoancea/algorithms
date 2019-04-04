@@ -10,16 +10,16 @@ typedef struct btree *BTree;
 /*
 creeaza un arbore nou
 */
-BTree new();
+BTree newTree();
 
 /* returneaza 1 daca arborele este gol, 0 altfel
 */
-int	isEmpty(BTree t);
+int	isEmptyTree(BTree t);
 
 /*
 determina numarul de noduri al arborelui t
 */
-int	size(BTree t);
+int	sizeTree(BTree t);
 
 /*
 returneaza radacina nodului t

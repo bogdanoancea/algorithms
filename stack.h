@@ -15,12 +15,12 @@ typedef struct {
  * Function: new
  * Usage: new(&stack, maxSize);
  */
-void new(stackT *sp, int maxSize);
+void newStack(stackT *sp, int maxSize);
 
 /* Function: destroy
  * Usage: destroy(&stack);
  */
-void destroy(stackT* sp);
+void deleteStack(stackT* sp);
 
 /*
  * Functions: push, pop
@@ -35,7 +35,7 @@ stackElementT pop(stackT * sp);
  * Functions: isEmpty, isFull
  */
 
-int isEmpty(stackT* sp);
-int isFull(stackT* sp);
+int isEmptyStack(stackT* sp);
+int isFullStack(stackT* sp);
 
 #endif  /* not defined _STACK_H */
