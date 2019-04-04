@@ -15,7 +15,7 @@ struct list {
     int       dimension;
 };
 
-List new(){
+List newList(){
     List L = (List)malloc(sizeof(struct list));
     L->dimension = 0;
     L->first = NULL;
@@ -46,22 +46,22 @@ int verifPoz(List L, Iterator p) {
 }
 
 Iterator next(List L, Iterator p){
-    assert(L && !isEmpty(L) && verifPoz(L,p));
+    assert(L && !isEmptyList(L) && verifPoz(L,p));
     return p->next;
 }
 
 Iterator prev(List L, Iterator p){
-    assert(L && !isEmpty(L) && verifPoz(L,p));
+    assert(L && !isEmptyList(L) && verifPoz(L,p));
     return p->prev;
 }
 
 void* get(List L, Iterator p){
-    assert(L && !isEmpty(L) && verifPoz(L,p));
+    assert(L && !isEmptyList(L) && verifPoz(L,p));
     return p->data;
 }
 
 void change(List L, Iterator p, void *x){
-    assert(L && !isEmpty(L) && verifPoz(L,p));
+    assert(L && !isEmptyList(L) && verifPoz(L,p));
     p->data = x;
 }
 
@@ -74,7 +74,7 @@ Iterator find(List L, void *x, PFC equal ){
 }
 
 void *removeElem(List L, Iterator p){
-	assert(L && !isEmpty(L) && verifPoz(L,p));
+	assert(L && !isEmptyList(L) && verifPoz(L,p));
 	Iterator q = p;	//alt iterator pentru a sterge nodul
 	p = next(L, p);	//actualizare iterator
 	void* x = q->data;
@@ -92,7 +92,7 @@ void *removeElem(List L, Iterator p){
 	return x;
 }
 
-void insert(List L, Iterator p, void *x) {
+void insertList(List L, Iterator p, void *x) {
 	Iterator nou;
 	if(!verifPoz(L, p))
 	    return;/*pozitia p nu exista*/
@@ -124,7 +124,7 @@ void insert(List L, Iterator p, void *x) {
 	L->dimension++;
 }
 
-void delete(List L) {
+void deleteList(List L) {
 	Iterator crt, prc;
 	crt = L->first;
 	while(crt != NULL){
@@ -136,10 +136,10 @@ void delete(List L) {
 }
 
 
-int isEmpty(List L) {
+int isEmptyList(List L) {
     return L->dimension == 0;
 }
 
-int size(List L) {
+int sizeList(List L) {
     return L->dimension;
 }

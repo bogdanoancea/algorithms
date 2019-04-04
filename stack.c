@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "stack.h"
 
-void new(stackT* sp, int maxSize) {
+void newStack(stackT* sp, int maxSize) {
   stackElementT* newContents;
 
   /* Allocate a new array to hold the contents. */
@@ -17,7 +17,7 @@ void new(stackT* sp, int maxSize) {
   sp->top = -1;  /* empty stack*/
 }
 
-void destroy(stackT *stackP) {
+void deleteStack(stackT *stackP) {
   free(stackP->contents);
   stackP->contents = NULL;
   stackP->maxSize = 0;
@@ -25,7 +25,7 @@ void destroy(stackT *stackP) {
 }
 
 void push(stackT* sp, stackElementT e) {
-  if (isFull(sp)) {
+  if (isFullStack(sp)) {
     fprintf(stderr, "Can't push element on stack: stack is full.\n");
     exit(1);
   }
@@ -33,18 +33,18 @@ void push(stackT* sp, stackElementT e) {
 }
 
 stackElementT pop(stackT* sp) {
-  if (isEmpty(sp)) {
+  if (isEmptyStack(sp)) {
     fprintf(stderr, "Can't pop element from stack: stack is empty.\n");
     exit(1);
   }
   return sp->contents[sp->top--];
 }
 
-int isEmpty(stackT* sp) {
+int isEmptyStack(stackT* sp) {
   return sp->top < 0;
 }
 
-int isFull(stackT* sp) {
-  return sp->top ==sp->maxSize - 1;
+int isFullStack(stackT* sp) {
+  return sp->top == sp->maxSize - 1;
 }
 

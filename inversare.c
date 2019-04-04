@@ -15,7 +15,7 @@ int main(void)
    * Initialize the stack.  Make it at least
    * big enough to hold the string we read in.
    */
-  new(&stack, strlen(str));
+  newStack(&stack, strlen(str));
 
   /*
    * Traverse the string and put each
@@ -33,11 +33,11 @@ int main(void)
 
   printf("\nPopped characters are: ");
 
-  while (!isEmpty(&stack)) {
+  while (!isEmptyStack(&stack)) {
     printf("%c", pop(&stack));
   }
 
   printf("\n");
-  destroy(&stack);
+  deleteStack(&stack);
   return 0;
 }

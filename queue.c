@@ -14,28 +14,28 @@ struct queue{
 	struct node *last;
 };
 
-Queue new (){
+Queue newQueue (){
 	Queue Q=(Queue)malloc(sizeof(struct queue));
 	Q->length=0;
 	Q->first = Q->last = 0;
 	return Q;
 }
 
-int size(Queue Q){
+int sizeQueue(Queue Q){
 	return Q->length;
 }
 
-int isEmpty(Queue Q){
+int isEmptyQueue(Queue Q){
 	return Q->length==0;
 }
 
 void *front(Queue Q){
-	assert(!isEmpty(Q));
+	assert(!isEmptyQueue(Q));
 	return Q->first->data;
 }
 
 void *back(Queue Q){
-	assert(!isEmpty(Q));
+	assert(!isEmptyQueue(Q));
 	return Q->last->data;
 }
 
@@ -52,7 +52,7 @@ void enq(Queue Q, void *x){
 }
 
 void *deq(Queue Q){
-    assert(!isEmpty(Q));
+    assert(!isEmptyQueue(Q));
      void *x = Q->first->data;
      struct node *del = Q->first;
      Q->first = Q->first->next;
@@ -64,7 +64,7 @@ void *deq(Queue Q){
 }
 
 void display(Queue Q) {
-    assert(!isEmpty(Q));
+    assert(!isEmptyQueue(Q));
     struct node* p = Q->first;
     printf("%d\n", *(int*)p->data);
     while(p->next != NULL) {

@@ -3,14 +3,14 @@
 #include "queue.h"
 
 
-void insert(Queue Q) {
+void insertQueue(Queue Q) {
 	int* x = (int*)malloc(sizeof(int));
 	printf("Dati valoarea pe care doriti sa o introduceti:");
 	scanf("%d", x);
 	enq(Q, x);
 }
 
-void extract(Queue Q) {
+void extractQueue(Queue Q) {
 	int *x;
 	x = deq(Q);
 	printf("Elementul sters din coada este: %d \n", *x);
@@ -18,7 +18,7 @@ void extract(Queue Q) {
 
 int main() {
 	int optiune = 0;
-	Queue Q = new();
+	Queue Q = newQueue();
 	while (optiune != 7) {
 		printf("1. Inserati un element in coada. \n");
 		printf("2. Extrageti un element din coada. \n");
@@ -30,9 +30,9 @@ int main() {
 		printf("Introduceti optiunea dorita:");
 		scanf("%d", &optiune);
 		if (optiune == 1)
-			insert(Q);
+			insertQueue(Q);
 		else if (optiune == 2)
-			extract(Q);
+			extractQueue(Q);
 		else if (optiune == 3)
 			display(Q);
 		else if (optiune == 4)
@@ -40,7 +40,7 @@ int main() {
         else if (optiune == 5)
            printf("Elementul de la sfarsitul cozii este %d:\n", *(int*)back(Q));
         else if (optiune == 6)
-           printf("Dimensiunea cozii este %d:\n", size(Q));
+           printf("Dimensiunea cozii este %d:\n", sizeQueue(Q));
         else if(optiune == 7)
 			break;
 	}

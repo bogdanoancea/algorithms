@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "tree.h"
 
-BTree insert (BTree root, int* key) {
+BTree insertTree(BTree root, int* key) {
     BTree node1, node2, node3;
     BTree res;
     node1 = createNode((void*)key, (BTree) NULL, (BTree)NULL, (BTree)NULL, 0);
@@ -49,17 +49,17 @@ int main()
     x[9] = 66;
     x[10] = 80;
 
-    BTree root = insert(new(), &x[0]);
-    insert(root, &x[1]);
-    insert(root, &x[2]);
-    insert(root, &x[3]);
-    insert(root, &x[4]);
-    insert(root, &x[5]);
-    insert(root, &x[6]);
-    insert(root, &x[7]);
-    insert(root, &x[8]);
-    insert(root, &x[9]);
-    insert(root, &x[10]);
+    BTree root = insertTree(newTree(), &x[0]);
+    insertTree(root, &x[1]);
+    insertTree(root, &x[2]);
+    insertTree(root, &x[3]);
+    insertTree(root, &x[4]);
+    insertTree(root, &x[5]);
+    insertTree(root, &x[6]);
+    insertTree(root, &x[7]);
+    insertTree(root, &x[8]);
+    insertTree(root, &x[9]);
+    insertTree(root, &x[10]);
 
     printf("\nArborele afisat in preordine:\n");
     preorder(root, visit);

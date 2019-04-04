@@ -3,35 +3,29 @@
 #include "tree.h"
 #include "queue.h"
 
-BTree insert (BTree root, int* key) {
+BTree insertTree(BTree root, int* key) {
     BTree node1, node2, node3;
     BTree res;
-    //node1 = (BTree) malloc(sizeof(btree));
-    node1 = BTree_CreateNode((void*)key, (BTree) NULL, (BTree)NULL, (BTree)NULL, 0);
-    //BTree_SetKey(node1, key);
-    //BTree_SetLT(node1, NULL);
-    //BTree_SetRT(node1, NULL);
+    node1 = createNode((void*)key, (BTree) NULL, (BTree)NULL, (BTree)NULL, 0);
     if(root == NULL)
         res = node1;
     else {
         node2 = root;
         while(node2 != NULL) {
-            if(*(int*)key < *(int*)BTree_GetKey(node2)) {
-                    //printf("1. am trecut odata");
+            if(*(int*)key < *(int*)getKey(node2)) {
                 node3 = node2;
-                node2 = BTree_GetLT(node2);
+                node2 = getLeftTree(node2);
             }
             else {
-                //printf("2. am trecut odata");
                 node3 = node2;
-                node2 = BTree_GetRT(node2);
+                node2 = getRightTree(node2);
             }
         }
-        if(*(int*)key < *(int*)BTree_GetKey(node3)) {
-            BTree_SetLT(node3, node1);
+        if(*(int*)key < *(int*)getKey(node3)) {
+            setLeftTree(node3, node1);
         }
         else {
-            BTree_SetRT(node3, node1);
+            setRightTree(node3, node1);
         }
         res = root;
     }
@@ -39,17 +33,17 @@ BTree insert (BTree root, int* key) {
 }
 
 
-void BreadthFirst(BTree root, void (*Visit)()){
-    Queue q = Q_New();
+void breadthFirst(BTree root, void (*Visit)()){
+    Queue q = newQueue();
     BTree p;
-    Enq(q, root);
-    while(!Q_Empty(q)){
-        p = Deq(q);
-        Visit(BTree_GetKey(p));
-        if(BTree_GetLT(p))
-            Enq(q, BTree_GetLT(p));
-        if(BTree_GetRT(p))
-            Enq(q, BTree_GetRT(p));
+    enq(q, root);
+    while(!isEmptyQueue(q)){
+        p = deq(q);
+        Visit(getKey(p));
+        if(getLeftTree(p))
+            enq(q, getLeftTree(p));
+        if(getRightTree(p))
+            enq(q, getRightTree(p));
     }
 }
 
@@ -70,25 +64,26 @@ int main()
     x[9] = 66;
     x[10] = 80;
 
-    BTree root = insert(BTree_New(), &x[0]);
-    insert(root, &x[1]);
-    insert(root, &x[2]);
-    insert(root, &x[3]);
-    insert(root, &x[4]);
-    insert(root, &x[5]);
-    insert(root, &x[6]);
-    insert(root, &x[7]);
-    insert(root, &x[8]);
-    insert(root, &x[9]);
-    insert(root, &x[10]);
+    BTree root = insertTree(newTree(), &x[0]);
+    insertTree(root, &x[1]);
+    insertTree(root, &x[2]);
+    insertTree(root, &x[3]);
+    insertTree(root, &x[4]);
+    insertTree(root, &x[5]);
+    insertTree(root, &x[6]);
+    insertTree(root, &x[7]);
+    insertTree(root, &x[8]);
+    insertTree(root, &x[9]);
+    insertTree(root, &x[10]);
 
     printf("\n Preordine :\n");
-    PreOrder(root, Visit);
+    preorderrder(root, visit);
     printf("\n Postordine :\n");
-    PostOrder(root, Visit);
+    postorder(root, visit);
     printf("\n Inordine :\n");
-    InOrder(root, Visit);
+    inorder(root, visit);
     printf("\n In latime :\n");
-    BreadthFirst(root, Visit);
+    breadthFirst(root, visit);
     return 0;
 }
+

@@ -11,7 +11,7 @@ int main(int argc, const char * argv[]) {
 
     List L;
     int x1, x2, x3, x4;
-    L = new();
+    L = newList();
     x1 = 5;
     x2 = 6;
     x3 = 7;
@@ -19,16 +19,16 @@ int main(int argc, const char * argv[]) {
 
     // inserez 4 elemente in varful listei
     Iterator i = first(L);
-    insert(L, i, &x1);
+    insertList(L, i, &x1);
 
     i = first(L);
-    insert(L, i, &x2);
+    insertList(L, i, &x2);
 
     i = first(L);
-    insert(L, i, &x3);
+    insertList(L, i, &x3);
 
     i = first(L);
-    insert(L, i, &x4);
+    insertList(L, i, &x4);
 
     printf("Lista de la cap la coada\n");
     //parcurg lista de la cap la coada si afisez elementele ei
@@ -48,7 +48,7 @@ int main(int argc, const char * argv[]) {
     int x5 = 9;
     i = first(L);
     i = next(L, i);
-    insert(L, i, &x5);
+    insertList(L, i, &x5);
 
 
     printf("Lista de la cap la coada\n");

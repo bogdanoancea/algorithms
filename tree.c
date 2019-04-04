@@ -11,18 +11,18 @@ struct btree{
 };
 
 
-BTree new () {
+BTree newTree () {
     return NULL;
 }
 
-int isEmpty(BTree root) {
+int isEmptyTree(BTree root) {
     return root==NULL;
 }
 
-int size(BTree root) {
+int sizeTree(BTree root) {
 	if(!root)
         return 0;
-	return size(root->left) + size(root->right)+1;
+	return sizeTree(root->left) + sizeTree(root->right)+1;
 }
 
 void *getKey(BTree root){
@@ -63,21 +63,21 @@ BTree getRightTree(BTree node){
 }
 
 void setLeftTree(BTree root, BTree left){
-	assert(!isEmpty(root));
+	assert(!isEmptyTree(root));
 	root->left = left;
 	if(left)
 		left->pred = root;
 }
 
 void setRightTree(BTree root, BTree right) {
-	assert(!isEmpty(root));
+	assert(!isEmptyTree(root));
 	root->right = right;
 	if(right)
 		right->pred = root;
 }
 
 void setPred(BTree root, BTree p, int dir) {
-	assert(!isEmpty(root));
+	assert(!isEmptyTree(root));
 	root->pred = p;
 	if(dir==-1)
 		p->left = root;
@@ -112,7 +112,7 @@ BTree createTree(BTree root, BTree left, BTree right){
 
 
 void preorder(BTree root, void (*Visit)(void*)){
-    if(!isEmpty(root)){
+    if(!isEmptyTree(root)){
         Visit(getKey(root));
         preorder(getLeftTree(root), Visit);
         preorder(getRightTree(root), Visit);
@@ -120,7 +120,7 @@ void preorder(BTree root, void (*Visit)(void*)){
 }
 
 void inorder(BTree root, void (*Visit)(void*)){
-    if(!isEmpty(root)){
+    if(!isEmptyTree(root)){
         inorder(getLeftTree(root), Visit);
         Visit(getKey(root));
         inorder(getRightTree(root), Visit);
@@ -128,7 +128,7 @@ void inorder(BTree root, void (*Visit)(void*)){
 }
 
 void postorder(BTree root, void (*Visit)(void*)){
-    if(!isEmpty(root)){
+    if(!isEmptyTree(root)){
         postorder(getLeftTree(root), Visit);
         postorder(getRightTree(root), Visit);
         Visit(getKey(root));

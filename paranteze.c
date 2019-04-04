@@ -43,7 +43,7 @@ int main () {
     char c;
     int i, result = 0;
 
-    new(&s, strlen(expr1));
+    newStack(&s, strlen(expr1));
     for(i = 0; i < strlen(expr1); i++) {
         if (isOpenParathesis(expr1[i]))
             push(&s, expr1[i]);
@@ -58,7 +58,7 @@ int main () {
                 result = 1;
         }
     }
-    if (!isEmpty(&s))
+    if (!isEmptyStack(&s))
         result = 0;
 
     if(result == 0)
