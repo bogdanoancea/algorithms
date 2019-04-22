@@ -18,10 +18,10 @@ int d[GRAPHSIZE]; /* d[i] is the minimum distance from node s to node i */
 void printDist() {
 	int i;
 
-	printf("Distances:\n");
+	printf("Distances to:\n");
 
 	for (i = 0; i < n; ++i)
-		printf("to %d\t", i + 1);
+		printf("%d\t", i + 1);
 	printf("\n");
 
 	for (i = 0; i < n; ++i)
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	int i, j;
 	int w;
 
-	FILE *fin = fopen("dist.txt", "r");
+	FILE *fin = fopen("bellman-ford.txt", "r");
 	fscanf(fin, "%d", &n);
 	e = 0;
 
