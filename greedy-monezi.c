@@ -1,58 +1,42 @@
-// C code for Minimum coin change problem by greedy method
+// plata unei sume cu un numar minim de monezi
 #include <stdio.h>
 #include <stdlib.h>
 
-//coin_value[] contains value or denomination of coins
-//n is toatal kind of coins and amount is total money to be paid
-void min_coins(int coin_value[],int n,int amount)
-{
-  for( int i=0; i< n; i++ ) 
+//coin_value[] - memoreaza valorile monezilor disponibile
+//n - numarul total de monezi
+//amount  - suma care trebuie platita
+
+void min_coins(int coin_value[], int n, int amount) {
+  
+  int i;
+  for( i=0; i < n; i++ ) 
     while(amount >= coin_value[i])
     {
-      //while loop is needed since one coin can be used multiple times
-      amount= amount - coin_value[i];
-      printf("%d  ",coin_value[i]);
+      //while este necesara deoarece o moneda poate fi utilizata de mia multe ori
+      amount = amount - coin_value[i];
+      printf("%d  ", coin_value[i]);
     }
   printf("\n");
 }
 
-//this is for qsort(), a built-in sorting funcion in C (its optional for user)
+//necesar functiei qsort(), care se gaseste in biblioteca standard
 int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)b - *(int*)a ); //for decreasing order
-}
-
-void swap( int* lhs, int* rhs )
-{
-	int tmp = *lhs;
-	*lhs = *rhs;
-	*rhs = tmp;
+   return ( *(int*)b - *(int*)a ); //descrescator
 }
 
 
-void selectionSort( int a[], int n) {
-  int min, i, j;
-	for (i = 0; i < n-1; i++) {
-    min = i;
-    for (j = i+1; j < n; j++)
-       if (a[j] < a[min])
-			min = j;
-    swap(&a[i], &a[min]);
-  }
-}
-
-int main()
-{
-  int i,j,n,amount;
-  printf( "Enter amount to be paid: ");
+int main() {
+  int i, j, n, amount;
+  printf( "Suma care trebuie platita: ");
   scanf( "%d",&amount);
-  printf( "Enter total kinds of currency: ");
+  printf( "Numarul de monede: ");
   scanf("%d",&n);
-  int coin_value[n]; //stores coins' values as per the user
-  printf( "Enter all currency values: ");
+  int coin_value[n]; 
+  printf( "Valorile monezilor: ");
   for(i = 0;i< n; i++)//
     scanf("%d",&coin_value[i]);
-  qsort(coin_value, n, sizeof(int), cmpfunc); //qsort is a built in funcition in C
-  printf( "The selected currecy values are: \n");
+  qsort(coin_value, n, sizeof(int), cmpfunc); 
+  printf( "Monezile cu care platim sunt: \n");
   min_coins(coin_value,n,amount);
   return 0;
 } 
