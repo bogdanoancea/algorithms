@@ -106,7 +106,7 @@ int main()
 {
     printf("Hello sorting algorithms!\n");
     int a[10] = {2,1,7,9,212,43,76,1,10,15};
-    int b[10], c[10], d[10] ,e[10], f[10];
+    int b[10], c[10], d[10] ,e[10];
     printVector(a,10);
 
     copyVector(a,b,10);
@@ -122,8 +122,8 @@ int main()
     printVector(d,10);
 
     copyVector(a,e,10);
-    mergesort(d,0,9);
-    printVector(d,10);
+    mergesort(e,0,9);
+    printVector(e,10);
 
     return 0;
 }
