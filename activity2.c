@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// A job has a start time, finish time and profit. 
+// A job has a start time and a finish time.
 struct Activity 
 { 
     int start, finish; 
