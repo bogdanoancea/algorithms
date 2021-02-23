@@ -1,6 +1,6 @@
 #include "list.h"
-#include<assert.h>
-#include<stdlib.h>
+#include <assert.h>
+#include <stdlib.h>
 
 
 struct node {
@@ -14,6 +14,8 @@ struct list {
     struct    node *last;
     int       dimension;
 };
+typedef struct node *Iterator;   //implementarea cu liste inlantuite
+
 
 List newList(){
     List L = (List)malloc(sizeof(struct list));
@@ -46,22 +48,22 @@ int verifPoz(List L, Iterator p) {
 }
 
 Iterator next(List L, Iterator p){
-    assert(L && !isEmptyList(L) && verifPoz(L,p));
+    assert(L && !isEmpty(L) && verifPoz(L,p));
     return p->next;
 }
 
 Iterator prev(List L, Iterator p){
-    assert(L && !isEmptyList(L) && verifPoz(L,p));
+    assert(L && !isEmpty(L) && verifPoz(L,p));
     return p->prev;
 }
 
 void* get(List L, Iterator p){
-    assert(L && !isEmptyList(L) && verifPoz(L,p));
+    assert(L && !isEmpty(L) && verifPoz(L,p));
     return p->data;
 }
 
 void change(List L, Iterator p, void *x){
-    assert(L && !isEmptyList(L) && verifPoz(L,p));
+    assert(L && !isEmpty(L) && verifPoz(L,p));
     p->data = x;
 }
 
@@ -74,7 +76,7 @@ Iterator find(List L, void *x, PFC equal ){
 }
 
 void *removeElem(List L, Iterator p){
-	assert(L && !isEmptyList(L) && verifPoz(L,p));
+	assert(L && !isEmpty(L) && verifPoz(L,p));
 	Iterator q = p;	//alt iterator pentru a sterge nodul
 	p = next(L, p);	//actualizare iterator
 	void* x = q->data;
@@ -92,7 +94,7 @@ void *removeElem(List L, Iterator p){
 	return x;
 }
 
-void insertList(List L, Iterator p, void *x) {
+void insert(List L, Iterator p, void *x) {
 	Iterator nou;
 	if(!verifPoz(L, p))
 	    return;/*pozitia p nu exista*/
@@ -136,10 +138,12 @@ void deleteList(List L) {
 }
 
 
-int isEmptyList(List L) {
+int isEmpty(List L) {
     return L->dimension == 0;
 }
 
-int sizeList(List L) {
+int size(List L) {
     return L->dimension;
 }
+
+void changeDim(List L) {}
