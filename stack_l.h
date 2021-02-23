@@ -1,5 +1,5 @@
-#ifndef _STACK_H
-#define _STACK_H
+#ifndef _STACKL_H
+#define _STACKL_H
 
 
 struct node {
@@ -16,26 +16,40 @@ typedef struct stack *Stack;
 
 Stack newStack();
 
-/* Function: destroy
- * Usage: destroy(&stack);
+/* Function: deleteStack
+ * Usage: deleteStack(S);
  */
 void deleteStack(Stack S);
 
 /*
  * Functions: push, pop
  * Usage:
- * push(&stack, element);
- * element = pop(&stack);
+ * push(S, element);
+ * element = pop(S);
  */
 void push(Stack S, void *elem);
 void* pop(Stack S);
 
 /*
- * Functions: isEmpty, isFull
+ * Function: peek
+ * Usage:
+ * element = peek(S);
  */
+void* peek(Stack S);
 
+
+/*
+* Function size
+* Usage:
+* n = size(S)
+*/
+int size(Stack S);
+
+/*
+ * Function: isEmpty
+ */
 int isEmpty(Stack S);
-int isFull(Stack S);
+
 
 
 #endif

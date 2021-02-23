@@ -18,8 +18,8 @@ typedef struct {
  */
 void newStack(stackType *sp, int maxSize);
 
-/* Function: destroy
- * Usage: destroy(&stack);
+/* Function: deleteStack
+ * Usage: deleteStack(&stack);
  */
 void deleteStack(stackType* sp);
 
