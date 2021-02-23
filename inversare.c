@@ -4,7 +4,7 @@
 
 int main(void)
 {
-  stackT stack;
+  stackType stack;
   char str[101];
   char *traverse;
 
@@ -26,6 +26,8 @@ int main(void)
     push(&stack, *traverse);
   }
 
+  printf("\nStack size:%d\n", size(&stack));
+  printf("\nTop element is:%c\n", peek(&stack));
   /*
    * Pop each of the characters off of
    * the stack and print them out.
@@ -33,11 +35,13 @@ int main(void)
 
   printf("\nPopped characters are: ");
 
-  while (!isEmptyStack(&stack)) {
+  while (!isEmpty(&stack)) {
     printf("%c", pop(&stack));
   }
 
+  printf("\nStack size:%d\n", size(&stack));
   printf("\n");
   deleteStack(&stack);
+
   return 0;
 }
