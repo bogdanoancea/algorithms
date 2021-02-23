@@ -4,7 +4,7 @@
 #include <string.h>
 
 struct list {
-	int  dim;	//dimensiune efectiva
+	int dim;	//dimensiune efectiva
 	int cap;		//capacitate (dimensiune alocata)                      
     void **data;      //tablou pointeri la date
 };
@@ -79,7 +79,7 @@ Iterator find(List L, void *x, PFC equal) {
     return last(L);
 }
 
-void *remove(List L, Iterator p) { 
+void *removeElem(List L, Iterator p) { 
     void *rez=NULL;
     int i;
     assert(L && !isEmpty(L) && verifPoz(L,p)); 
@@ -116,5 +116,8 @@ L = L1;
 }
 
 
-
+void deleteList(List L) {
+    free(L->data);
+    free(L);
+}
 

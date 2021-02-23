@@ -1,8 +1,8 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-#define LINKED_LIST
-//#define ARRAY
+//#define LINKED_LIST
+#define ARRAY
 
 struct node; //definirea este ascunsa in implementare
 struct list;
