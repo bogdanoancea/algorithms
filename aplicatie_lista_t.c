@@ -33,7 +33,7 @@ int main() {
 
     printf("Elementele listei sunt:\n");
     Iterator el;
-    for(el = first(L); el!=last(L); el = next(L,el)) {
+    for(el = first(L); el!=NULL; el = next(L,el)) {
         printf("%d\n", *(int*)get(L,el));
     }
     printf("%d\n", *(int*)get(L,el));
