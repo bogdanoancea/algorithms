@@ -12,7 +12,7 @@ int isOpenParanthesis(char c) {
     return result;
 }
 
-isClosedParanthesis(char c) {
+int isClosedParanthesis(char c) {
     int result = 0;
 
     if( c == ')' || c == '}' || c == ']' || c == '>')
@@ -43,27 +43,37 @@ int main () {
     char c;
     int i, result = 0;
 
-    newStack(&s, strlen(expr1));
-    for(i = 0; i < strlen(expr1); i++) {
-        if (isOpenParanthesis(expr1[i]))
-            push(&s, expr1[i]);
-        else
-        if (isClosedParanthesis(expr1[i])) {
-           c = pop(&s);
-           if (!isPair(c, expr1[i])) {
-                result = 0;
-                break;
-           }
-            else
-                result = 1;
-        }
-    }
-    if (!isEmpty(&s))
-        result = 0;
+	char sir[81];
+	scanf("%s", sir);
+	while(strcmp(sir, ".")!=0) {
+		result = 0;
+		newStack(&s, strlen(sir));
+		for(i = 0; i < strlen(sir); i++) {
+			if (isOpenParanthesis(sir[i]))
+				push(&s, sir[i]);
+			else
+			if (isClosedParanthesis(sir[i])) {
+			   c = pop(&s);
+			   if (!isPair(c, sir[i])) {
+					result = 0;
+					break;
+			   }
+				else
+					result = 1;
+			}
+		}
+		if (!isEmpty(&s))
+			result = 0;
+		
+		deleteStack(&s);
 
-    if(result == 0)
-        printf("parantezele sunt puse incorect");
-    else
-        printf("parantezele sunt puse corect");
+		if(result == 0)
+			printf("parantezele sunt puse incorect\n");
+		else
+			printf("parantezele sunt puse corect\n");
+		
+		scanf("%s", sir);
+		
+	}
     return 0;
 }
