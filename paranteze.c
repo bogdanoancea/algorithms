@@ -3,7 +3,7 @@
 #include <string.h>
 #include "stack.h"
 
-int isOpenParathesis(char c) {
+int isOpenParanthesis(char c) {
     int result = 0;
 
     if( c == '(' || c == '{' || c == '[' || c == '<')
@@ -12,7 +12,7 @@ int isOpenParathesis(char c) {
     return result;
 }
 
-int isClosedParathesis(char c) {
+isClosedParanthesis(char c) {
     int result = 0;
 
     if( c == ')' || c == '}' || c == ']' || c == '>')
@@ -39,16 +39,16 @@ int isPair(char c1, char c2) {
 int main () {
     char* expr1 = "{A[B<C><D>(E)F](G)}";
     char* expr2 = "{A[B}]";
-    stackT s;
+    stackType s;
     char c;
     int i, result = 0;
 
     newStack(&s, strlen(expr1));
     for(i = 0; i < strlen(expr1); i++) {
-        if (isOpenParathesis(expr1[i]))
+        if (isOpenParanthesis(expr1[i]))
             push(&s, expr1[i]);
         else
-        if (isClosedParathesis(expr1[i])) {
+        if (isClosedParanthesis(expr1[i])) {
            c = pop(&s);
            if (!isPair(c, expr1[i])) {
                 result = 0;
