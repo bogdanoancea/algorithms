@@ -58,7 +58,7 @@ int main () {
                 result = 1;
         }
     }
-    if (!isEmptyStack(&s))
+    if (!isEmpty(&s))
         result = 0;
 
     if(result == 0)
