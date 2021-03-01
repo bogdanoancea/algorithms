@@ -37,12 +37,9 @@ int isPair(char c1, char c2) {
 
 
 int main () {
-    char* expr1 = "{A[B<C><D>(E)F](G)}";
-    char* expr2 = "{A[B}]";
     stackType s;
     char c;
     int i, result = 0;
-
 	char sir[81];
 	scanf("%s", sir);
 	while(strcmp(sir, ".")!=0) {
