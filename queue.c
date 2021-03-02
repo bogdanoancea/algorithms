@@ -14,7 +14,7 @@ struct queue{
 	struct node *last;
 };
 
-Queue newQueue (){
+Queue newQueue2(){
 	Queue Q=(Queue)malloc(sizeof(struct queue));
 	Q->length=0;
 	Q->first = Q->last = 0;

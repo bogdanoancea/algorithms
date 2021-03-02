@@ -18,7 +18,7 @@ void extractQueue(Queue Q) {
 
 int main() {
 	int optiune = 0;
-	Queue Q = newQueue2();
+	Queue Q = newQueue(10);
 	while (optiune != 7) {
 		printf("1. Inserati un element in coada. \n");
 		printf("2. Extrageti un element din coada. \n");
@@ -36,9 +36,9 @@ int main() {
 		else if (optiune == 3)
 			display(Q);
 		else if (optiune == 4)
-            printf("Elementul din varful cozii este %d:\n", *(int*)front(Q));
+            printf("Elementul din varful cozii este: %d\n", *(int*)front(Q));
         else if (optiune == 5)
-           printf("Elementul de la sfarsitul cozii este %d:\n", *(int*)back(Q));
+           printf("Elementul de la sfarsitul cozii: este %d\n", *(int*)back(Q));
         else if (optiune == 6)
            printf("Dimensiunea cozii este %d:\n", sizeQueue(Q));
         else if(optiune == 7)
@@ -46,3 +46,4 @@ int main() {
 	}
     return 0;
 }
+

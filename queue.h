@@ -3,9 +3,9 @@
 
 typedef struct queue *Queue;
 
-//Queue new(int);
+Queue newQueue(int);
 
-Queue newQueue();
+Queue newQueue2();
 
 void deleteQueue(Queue Q);
 

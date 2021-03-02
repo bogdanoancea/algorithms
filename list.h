@@ -1,8 +1,8 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-//#define LINKED_LIST
-#define ARRAY
+#define LINKED_LIST
+//#define ARRAY
 
 struct node; //definirea este ascunsa in implementare
 struct list;
@@ -12,7 +12,7 @@ typedef struct list *List;       //pointer opac
 #ifdef LINKED_LIST
 typedef struct node *Iterator;   //implementarea cu liste inlantuite
 #else
-typedef int Iterator;   //implementarea cu liste inlantuite
+typedef int Iterator;   //implementarea cu tablouri
 #endif
 
 
@@ -63,4 +63,7 @@ Iterator prev(List L, Iterator p);
 
 //schimba capacitatea - doar la implementarea cu tablouri
 void changeDim(List L);
+
+//helper function
+Iterator last_test(List L);
 #endif 

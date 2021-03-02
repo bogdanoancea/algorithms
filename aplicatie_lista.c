@@ -19,7 +19,7 @@ int main() {
     elemente[2]=5;
     elemente[3]=7;
     elemente[4]=9;
-    insert(L,NULL, &elemente[0]);
+    insert(L, NULL, &elemente[0]);
     printf("Dimensiunea listei : %d\n", size(L));
     Iterator p = first(L);
     insert(L, p, &elemente[1]);
@@ -33,6 +33,12 @@ int main() {
 
     printf("Elementele listei sunt:\n");
     Iterator el;
+    for(el = first(L); el!=NULL; el = next(L,el)) {
+        printf("%d\n", *(int*)get(L,el));
+    }
+
+    removeElem(L, pos);
+    printf("Elementele listei sunt:\n");
     for(el = first(L); el!=NULL; el = next(L,el)) {
         printf("%d\n", *(int*)get(L,el));
     }

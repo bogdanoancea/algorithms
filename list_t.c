@@ -121,3 +121,8 @@ void deleteList(List L) {
     free(L);
 }
 
+//helper function
+Iterator last_test(List L){ 
+    assert(L);
+    return L->dim + 1;
+}
