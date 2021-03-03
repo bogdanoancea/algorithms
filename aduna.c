@@ -3,19 +3,22 @@
 #include <string.h>
 #include "stack_int.h"
 
+
 int isNumber(char* c) {
 	int result = 0;
 	int i;
 	for( i = 0; i < strlen(c); i++) {
 		if(c[i] == '0' || c[i] == '1' || c[i] == '2' || c[i] == '3' || c[i] == '4' || c[i] == '5' || c[i] == '6' || c[i] == '7' || c[i] == '8' || c[i] == '9')
 			result = 1;
-		else
+		else {
 			result = 0;
+			break;
+		}
 	}	
 	return result;
 }
 
-
+// aduna numere intregi pozitive
 int main () {
     stackType s;
     char cuvant[100];

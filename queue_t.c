@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//implementare cu tablouri simple
+
 struct queue {
     int v;	//varf (inceput) coada
     int b;	//baza (sfarsit) coada
@@ -67,4 +69,4 @@ void display(Queue Q) {
 }
 
 
-Queue newQueue2(){return NULL;};
+Queue newQueue2(){return NULL;}
