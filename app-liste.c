@@ -19,16 +19,16 @@ int main(int argc, const char * argv[]) {
 
     // inserez 4 elemente in varful listei
     Iterator i = first(L);
-    insertList(L, i, &x1);
+    insert(L, i, &x1);
 
     i = first(L);
-    insertList(L, i, &x2);
+    insert(L, i, &x2);
 
     i = first(L);
-    insertList(L, i, &x3);
+    insert(L, i, &x3);
 
     i = first(L);
-    insertList(L, i, &x4);
+    insert(L, i, &x4);
 
     printf("Lista de la cap la coada\n");
     //parcurg lista de la cap la coada si afisez elementele ei
@@ -48,7 +48,7 @@ int main(int argc, const char * argv[]) {
     int x5 = 9;
     i = first(L);
     i = next(L, i);
-    insertList(L, i, &x5);
+    insert(L, i, &x5);
 
 
     printf("Lista de la cap la coada\n");
