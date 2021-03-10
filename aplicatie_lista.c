@@ -10,7 +10,6 @@ int equal(void* a, void* b) {
         return 0;
 }
 
-
 int main() {
     List L = newList();
     int* elemente = (int*)malloc(5 * sizeof(int));
@@ -21,11 +20,10 @@ int main() {
     elemente[4]=9;
     insert(L, NULL, &elemente[0]);
     printf("Dimensiunea listei : %d\n", size(L));
-    Iterator p = first(L);
-    insert(L, p, &elemente[1]);
-    insert(L, p, &elemente[2]);
-    insert(L, p, &elemente[3]);
-    insert(L, p, &elemente[4]);
+    insert(L, first(L), &elemente[1]);
+    insert(L, first(L), &elemente[2]);
+    insert(L, first(L), &elemente[3]);
+    insert(L, first(L), &elemente[4]);
     printf("Dimensiunea listei : %d\n", size(L));
     Iterator pos = find(L, &elemente[2], &equal);
     if(pos != NULL)

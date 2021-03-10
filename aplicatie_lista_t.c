@@ -21,11 +21,10 @@ int main() {
     elemente[4]=9;
     insert(L,0, &elemente[0]);
     printf("Dimensiunea listei : %d\n", size(L));
-    Iterator p = first(L);
-    insert(L, p, &elemente[1]);
-    insert(L, p, &elemente[2]);
-    insert(L, p, &elemente[3]);
-    insert(L, p, &elemente[4]);
+    insert(L, first(L), &elemente[1]);
+    insert(L, first(L), &elemente[2]);
+    insert(L, first(L), &elemente[3]);
+    insert(L, first(L), &elemente[4]);
     printf("Dimensiunea listei : %d\n", size(L));
     Iterator pos = find(L, &elemente[2], &equal);
     if(pos != last(L))
