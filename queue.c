@@ -72,3 +72,30 @@ void display(Queue Q) {
         printf("%d\n", *(int*)p->data);
     }
 }
+
+int isFullQueue(Queue Q)  {
+	return 0;
+}
+
+ void deleteQueue(Queue Q) {
+	if(Q) {
+		if(Q->length == 0) {
+			free(Q);
+		}
+		else {
+			struct node* p = Q->first;
+			while(p->next != NULL) {
+				struct node* del = p;
+				p = p->next;
+				free(del->data);
+				free(del);
+			}
+			free(p->data);
+			free(p);
+			free(Q);
+		}
+	}
+ }
+
+ Queue newQeue(int cap) {return NULL;}
+ 

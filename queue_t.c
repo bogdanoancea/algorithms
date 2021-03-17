@@ -25,12 +25,12 @@ Queue newQueue(int cap){
 int isEmptyQueue(Queue Q) {
 	return Q->n == 0;
 }
-int isFull(Queue Q) {
+int isFullQueue(Queue Q) {
 	return Q->n == Q->c;
 }
 
 void enq(Queue Q, void *x){
-	assert(!isFull(Q));
+	assert(!isFullQueue(Q));
 	Q->data[Q->b++] = x;
 	 if(Q->b == Q->c)
 		Q->b = 0;
@@ -68,5 +68,20 @@ void display(Queue Q) {
     }
 }
 
-
+void deleteQueue(Queue Q) {
+	if(Q) {
+		if(Q->n == 0) {
+			free(Q);
+		}
+		else {
+		    int vv = Q->v;
+    		int bb = Q->b;
+    		while(vv != bb) {
+        		free(Q->data[vv++]);
+    		}
+			free(Q->data);
+			free(Q);
+		}
+	}
+}
 Queue newQueue2(){return NULL;}

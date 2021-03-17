@@ -44,5 +44,6 @@ int main() {
         else if(optiune == 7)
 			break;
 	}
+	deleteQueue(Q);
     return 0;
 }
