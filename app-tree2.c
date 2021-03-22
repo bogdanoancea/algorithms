@@ -34,7 +34,7 @@ BTree insertTree(BTree root, int* key) {
 
 
 void breadthFirst(BTree root, void (*Visit)()){
-    Queue q = newQueue();
+    Queue q = newQueue2();
     BTree p;
     enq(q, root);
     while(!isEmptyQueue(q)){
@@ -77,7 +77,7 @@ int main()
     insertTree(root, &x[10]);
 
     printf("\n Preordine :\n");
-    preorderrder(root, visit);
+    preorder(root, visit);
     printf("\n Postordine :\n");
     postorder(root, visit);
     printf("\n Inordine :\n");
