@@ -8,7 +8,7 @@ void findMinRoute(int tsp[4][4], int n, int start)
 {
     int sum = 0;
     int counter = 0;
-    int i, j;
+    int i, j = 0;
     int min = INT_MAX;
     int visitedRouteList[n];
     int route[n];
