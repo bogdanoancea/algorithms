@@ -1,127 +1,126 @@
-// A divide and conquer program in C/C++ to find the smallest distance from a 
-// given set of points. 
+// Program C care calculeaza distanta minima intre doua puncte dintr-un set de puncte
+
   
 #include <stdio.h> 
 #include <float.h> 
 #include <stdlib.h> 
 #include <math.h> 
   
-// A structure to represent a Point in 2D plane 
-struct Point 
-{ 
-    int x, y; 
+// Structura care va reprezenta un punct in spatiul bidimensional
+struct Point  { 
+    int x;
+    int y; 
 }; 
   
-/* Following two functions are needed for library function qsort(). 
-   Refer: http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ */
-  
-// Needed to sort array of points according to X coordinate 
-int compareX(const void* a, const void* b) 
-{ 
-    struct Point *p1 = (struct Point *)a,  *p2 = (struct Point *)b; 
+/* Functia care compara doua puncte dupa X, necesara functiei qsort(). 
+   Puteti citi documentatia functie qsort aici: http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ 
+*/
+int compareX(const void* a, const void* b)  { 
+    struct Point *p1 = (struct Point *)a;
+    struct Point *p2 = (struct Point *)b;
     return (p1->x - p2->x); 
 } 
-// Needed to sort array of points according to Y coordinate 
-int compareY(const void* a, const void* b) 
-{ 
-    struct Point *p1 = (struct Point *)a,   *p2 = (struct Point *)b; 
+// Functia care compara doua puncte dupa X, necesara functiei qsort().  
+int compareY(const void* a, const void* b) { 
+    struct Point *p1 = (struct Point *)a;   
+    struct Point *p2 = (struct Point *)b; 
     return (p1->y - p2->y); 
 } 
   
-// A utility function to find the distance between two points 
-float dist(struct Point p1, struct Point p2) 
-{ 
+// Functia care calculeaza distanta intre doua puncte
+float dist(struct Point p1, struct Point p2)  { 
     return sqrt( (p1.x - p2.x)*(p1.x - p2.x) + 
-                 (p1.y - p2.y)*(p1.y - p2.y) 
-               ); 
+                 (p1.y - p2.y)*(p1.y - p2.y) ); 
 } 
   
-// A Brute Force method to return the smallest distance between two points 
-// in P[] of size n 
-float bruteForce(struct Point P[], int n) 
-{ 
+// Functia de tip "forta bruta" care calculeza distanta minima intre doua puncte din tabloul P[] de dimensiune n
+float bruteForce(struct Point P[], int n)  { 
     float min = FLT_MAX; 
-    for (int i = 0; i < n; ++i) 
-        for (int j = i+1; j < n; ++j) 
+    int i, j;
+    for (i = 0; i < n; ++i) 
+        for (j = i+1; j < n; ++j) 
             if (dist(P[i], P[j]) < min) 
                 min = dist(P[i], P[j]); 
     return min; 
 } 
   
-// A utility function to find minimum of two float values 
-float min(float x, float y) 
-{ 
-    return (x < y)? x : y; 
+// Functie care calculeaza cel mai mic numar dintre 2 numere de tip float
+float min(float x, float y)  { 
+    return (x < y) ? x : y; 
 } 
   
-  
-// A utility function to find the distance beween the closest points of 
-// strip of given size. All points in strip[] are sorted accordint to 
-// y coordinate. They all have an upper bound on minimum distance as d. 
-// Note that this method seems to be a O(n^2) method, but it's a O(n) 
-// method as the inner loop runs at most 6 times 
-float stripClosest(struct Point strip[], int size, float d) 
-{ 
+
+// O functie care calculeaza distanta intre cele mai apropiate puncte 
+// dintr-o banda versticala de dimensiunea data strip[]. Toate punctele din strip[]
+// sunt sortate dupa y. Ele au ca limita superioara a distantei minime pe d.
+// Desi pare ca algoritmul are complexitatea O(n^2), el are de fapt 
+// complexitatea O(n) intrucat bucla interioara are cel mut 6 iteratii.
+float stripClosest(struct Point strip[], int size, float d) { 
+    int i, j;
     float min = d;  // Initialize the minimum distance as d 
   
     qsort(strip, size, sizeof(struct Point), compareY);  
   
     // Pick all points one by one and try the next points till the difference 
     // between y coordinates is smaller than d. 
-    // This is a proven fact that this loop runs at most 6 times 
-    for (int i = 0; i < size; ++i) 
-        for (int j = i+1; j < size && (strip[j].y - strip[i].y) < min; ++j) 
+    // selectam punctele unul cate unul si calculam distanta catre punctele
+    // care sunt plasate la distanta mai mica decat d pe axa OY
+    for (i = 0; i < size; ++i) 
+        for (j = i+1; j < size && (strip[j].y - strip[i].y) < min; ++j) 
             if (dist(strip[i],strip[j]) < min) 
                 min = dist(strip[i], strip[j]); 
   
     return min; 
 } 
   
-// A recursive function to find the smallest distance. The array P contains 
-// all points sorted according to x coordinate 
-float closestUtil(struct Point P[], int n) 
-{ 
-    // If there are 2 or 3 points, then use brute force 
+// O functie recursiva care calculeaza distanta cea mai mica intre doua puncte din P[].
+// Punctele sunt sortate du coordonata X.
+float closestUtil(struct Point P[], int n) { 
+    struct Point strip[n]; 
+    int i, j = 0, mid; 
+    float dl, dr, d;
+    struct Point midPoint;
+    // Daca sunt doar 2 sau 3 puncte, utilizam algoritmul fortei brute.
     if (n <= 3) 
         return bruteForce(P, n); 
   
-    // Find the middle point 
-    int mid = n/2; 
-    struct Point midPoint = P[mid]; 
+    // Selectam punctul din mijloc 
+    mid = n/2; 
+    midPoint = P[mid]; 
   
-    // Consider the vertical line passing through the middle point 
-    // calculate the smallest distance dl on left of middle point and 
-    // dr on right side 
-    float dl = closestUtil(P, mid); 
-    float dr = closestUtil(P + mid, n-mid); 
+    
+    // Calculam distanta minima pentru punctele din stanga liniei verticale
+    // care trece prin punctul de mijloc si distanta minima pentru
+    // punctele din dreapta
+    dl = closestUtil(P, mid); 
+    dr = closestUtil(P + mid, n-mid); 
   
-    // Find the smaller of two distances 
-    float d = min(dl, dr); 
+    // Calculam minimul intre dl si dr
+    d = min(dl, dr); 
   
-    // Build an array strip[] that contains points close (closer than d) 
-    // to the line passing through the middle point 
-    struct Point strip[n]; 
-    int j = 0; 
-    for (int i = 0; i < n; i++) 
-        if (abs(P[i].x - midPoint.x) < d) 
-            strip[j] = P[i], j++; 
+
+    // Construim tabloul strip[] ce contine punctele mai aproapiate de linia
+    // vertical ce trece prin punctul de mijloc decat distanta d.
+    for (i = 0; i < n; i++) 
+        if (abs(P[i].x - midPoint.x) < d) {
+            strip[j] = P[i];
+            j++; 
+        }
   
-    // Find the closest points in strip.  Return the minimum of d and closest 
-    // distance is strip[] 
+    // cautam dele mai apropiate puncte in aceasta banda si returnam minimul intre d
+    // si cea mai mica distanta din strip[]
     return min(d, stripClosest(strip, j, d) ); 
 } 
   
-// The main functin that finds the smallest distance 
-// This method mainly uses closestUtil() 
-float closest(struct Point P[], int n) 
-{ 
+// functia principala, gaseste distanta minima
+float closest(struct Point P[], int n) { 
     qsort(P, n, sizeof(struct Point), compareX); 
   
-    // Use recursive function closestUtil() to find the smallest distance 
+    // Se foloseste functia recursiva closestUtil().
     return closestUtil(P, n); 
 } 
   
-// Driver program to test above functions 
+// functia main 
 int main() 
 { 
     struct Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}}; 
