@@ -97,14 +97,14 @@ float closestUtil(struct Point P[], int n) {
   
 
     // Construim tabloul strip[] ce contine punctele mai aproapiate de linia
-    // vertical ce trece prin punctul de mijloc decat distanta d.
+    // verticala ce trece prin punctul de mijloc decat distanta d.
     for (i = 0; i < n; i++) 
         if (abs(P[i].x - midPoint.x) < d) {
             strip[j] = P[i];
             j++; 
         }
   
-    // cautam dele mai apropiate puncte in aceasta banda si returnam minimul intre d
+    // cautam cele mai apropiate puncte in aceasta banda si returnam minimul intre d
     // si cea mai mica distanta din strip[]
     return min(d, stripClosest(strip, j, d) ); 
 } 
