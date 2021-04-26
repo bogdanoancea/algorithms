@@ -1,6 +1,5 @@
 // Program C care calculeaza distanta minima intre doua puncte dintr-un set de puncte
 
-  
 #include <stdio.h> 
 #include <float.h> 
 #include <stdlib.h> 
@@ -13,7 +12,7 @@ struct Point  {
 }; 
   
 /* Functia care compara doua puncte dupa X, necesara functiei qsort(). 
-   Puteti citi documentatia functie qsort aici: http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ 
+   Puteti citi documentatia functiei qsort aici: http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ 
 */
 int compareX(const void* a, const void* b)  { 
     struct Point *p1 = (struct Point *)a;
@@ -54,15 +53,13 @@ float min(float x, float y)  {
 // dintr-o banda versticala de dimensiunea data strip[]. Toate punctele din strip[]
 // sunt sortate dupa y. Ele au ca limita superioara a distantei minime pe d.
 // Desi pare ca algoritmul are complexitatea O(n^2), el are de fapt 
-// complexitatea O(n) intrucat bucla interioara are cel mut 6 iteratii.
+// complexitatea O(n) intrucat bucla interioara are cel mut 7 iteratii.
 float stripClosest(struct Point strip[], int size, float d) { 
     int i, j;
     float min = d;  // Initialize the minimum distance as d 
   
     qsort(strip, size, sizeof(struct Point), compareY);  
   
-    // Pick all points one by one and try the next points till the difference 
-    // between y coordinates is smaller than d. 
     // selectam punctele unul cate unul si calculam distanta catre punctele
     // care sunt plasate la distanta mai mica decat d pe axa OY
     for (i = 0; i < size; ++i) 

@@ -1,4 +1,4 @@
-// Cprogram to count occurrences of an element 
+// C program to count occurrences of an element 
 #include <stdio.h>
 
   
