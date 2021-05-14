@@ -114,10 +114,8 @@ int knapsack(int n, struct Item arr[], int W) {
 int main() {
 //	int W = 10; // Weight of knapsack
 	int W = 16;
-//	struct Item arr[] = {{2, 40}, {3, 50}, {2, 100},
-				{5, 95}, {3, 30}};
-//	struct Item arr[] = {{2, 40}, {5, 30}, {10, 50},
-				{5, 10}};
+//	struct Item arr[] = {{2, 40}, {3, 50}, {2, 100}, {5, 95}, {3, 30}};
+	struct Item arr[] = {{2, 40}, {5, 30}, {10, 50}, {5, 10}};
 
 	int n = sizeof(arr) / sizeof(arr[0]);
 
