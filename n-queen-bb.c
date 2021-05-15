@@ -45,7 +45,7 @@ int solveNQueensUtil(int board[N][N], int col, int slashCode[N][N], int backslas
            board[i][col] */
         if ( isSafe(i, col, slashCode, backslashCode, rowLookup,
           slashCodeLookup, backslashCodeLookup) ){
-            /* Place this queen in board[i][col] */
+            /* Plasam regina pe pozitia board[i][col] */
             board[i][col] = 1;
             rowLookup[i] = true;
             slashCodeLookup[slashCode[i][col]] = true;
@@ -56,7 +56,7 @@ int solveNQueensUtil(int board[N][N], int col, int slashCode[N][N], int backslas
              rowLookup, slashCodeLookup, backslashCodeLookup) )
                 return true;
  
-            /* Daca plasarea reginei in ozitia board[i][col]
+            /* Daca plasarea reginei in pozitia board[i][col]
             nu conduce la o solutie, mergem inapoi un pas */
  
             /* Luam regina de pe pozitia board[i][col] */
