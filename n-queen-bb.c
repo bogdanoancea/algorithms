@@ -41,7 +41,7 @@ int solveNQueensUtil(int board[N][N], int col, int slashCode[N][N], int backslas
  
     /* Pe coloana col incercam sa plasam regina pu un rand */
     for (int i = 0; i < N; i++)  {
-        /* Verificam daca regina paote fi plasata in pozitia
+        /* Verificam daca regina poate fi plasata in pozitia
            board[i][col] */
         if ( isSafe(i, col, slashCode, backslashCode, rowLookup,
           slashCodeLookup, backslashCodeLookup) ){
