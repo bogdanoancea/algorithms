@@ -15,30 +15,20 @@ struct Item {
 };
 
 void insertOrd(List L, struct Node* v) {
-    float current_gain, current_data_gain;
+    float current_bound, current_data_bound;
     Iterator it;
     struct Node* current_data;
     if(isEmpty(L))
         insert(L, NULL, v);
     else {
         it = first(L);
-        if(v->weight != 0)
-           current_gain = v->value/v->weight;
-        else
-            current_gain = 0;
+		current_bound = v->bound;
+		current_data = get(L,it);
+        current_data_bound = current_data->bound;
 
-        current_data = get(L,it);
-        if(current_data->weight != 0)
-           current_data_gain = current_data->value/current_data->weight;
-        else
-            current_data_gain = 0;
-
-        while( current_gain <= current_data_gain && it != NULL )  {
+        while( current_bound <= current_data_bound && it != NULL )  {
             current_data = get(L,it);
-            if(current_data->weight != 0)
-                current_data_gain = current_data->value/current_data->weight;
-            else
-                current_data_gain = 0;
+            current_data_bound = current_data->bound;
 
             it = next(L, it);
         }
@@ -80,7 +70,7 @@ int knapsack(int n, struct Item arr[], int W) {
   v->weight = 0;
   v->bound = bound(*v, arr, W, n); // nodul v va fi radacina arborelui
   maxvalue = 0;
-  insertOrd(L, v);
+  insertOrd2(L, v);
   while (! isEmpty(L)){
      v = (struct Node *)removeElem(L, first(L));  //extrag nodul cu cel mai mare bound
      if (v->bound > maxvalue) { // verific daca este nod promitator
@@ -93,7 +83,7 @@ int knapsack(int n, struct Item arr[], int W) {
            maxvalue = u->value;
         u->bound = bound(*u, arr, W, n);
         if (u->bound > maxvalue)
-           insertOrd(L, u);
+           insertOrd2(L, u);
 
         // nodul u va fi nodul copil care NU include
         // urmatorul obiect
@@ -104,7 +94,7 @@ int knapsack(int n, struct Item arr[], int W) {
 
         u->bound = bound(*u, arr, W, n);
         if (u->bound > maxvalue)
-           insertOrd(L, u);
+           insertOrd2(L, u);
      }
   }
   return maxvalue;
