@@ -83,7 +83,7 @@ int knapsack(int n, struct Item arr[], int W) {
            maxvalue = u->value;
         u->bound = bound(*u, arr, W, n);
         if (u->bound > maxvalue)
-           insertOrd2(L, u);
+           insertOrd(L, u);
 
         // nodul u va fi nodul copil care NU include
         // urmatorul obiect
@@ -94,7 +94,7 @@ int knapsack(int n, struct Item arr[], int W) {
 
         u->bound = bound(*u, arr, W, n);
         if (u->bound > maxvalue)
-           insertOrd2(L, u);
+           insertOrd(L, u);
      }
   }
   return maxvalue;
