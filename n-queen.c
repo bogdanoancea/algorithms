@@ -1,4 +1,4 @@
-/* C program to solve N Queen Problem using backtracking */
+/* Problema celor N regine rezolvata prin metoda backtracking */
 
 #define N 4
 #define true 1
@@ -7,38 +7,33 @@
 #include<stdio.h>
 
 
-/* A utility function to print solution */
-void printSolution(int board[N][N])
-{
-    for (int i = 0; i < N; i++)
-    {
+/* O functie care tipareste solutia */
+void printSolution(int board[N][N]) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++)
             printf(" %d ", board[i][j]);
         printf("\n");
     }
 }
 
-/* A utility function to check if a queen can
-   be placed on board[row][col]. Note that this
-   function is called when "col" queens are
-   already placed in columns from 0 to col -1.
-   So we need to check only left side for
-   attacking queens */
-int isSafe(int board[N][N], int row, int col)
-{
+/*O functie care verifica daca putem plasa o regina pe tabla in pozitia
+  board[row][col]. Aceasta functie este apelata cand au fost deja plasate 
+  "col" regine, pe coloanele 0 pana la col-1.
+   Verificam deci doar partea din stanga */
+int isSafe(int board[N][N], int row, int col) {
     int i, j;
 
-    /* Check this row on left side */
+    /* Verificam randul row pe coloanele din stanga */
     for (i = 0; i < col; i++)
         if (board[row][i])
             return false;
 
-    /* Check upper diagonal on left side */
+    /* Verificam diagonala principala, in stanga */
     for (i=row, j=col; i>=0 && j>=0; i--, j--)
         if (board[i][j])
             return false;
 
-    /* Check lower diagonal on left side */
+    /* Verificam diagonala secundara, in stanga */
     for (i=row, j=col; j>=0 && i<N; i++, j--)
         if (board[i][j])
             return false;
@@ -46,61 +41,49 @@ int isSafe(int board[N][N], int row, int col)
     return true;
 }
 
-/* A recursive utility function to solve N
-   Queen problem */
-int solveNQUtil(int board[N][N], int col)
-{
-    /* base case: If all queens are placed
-      then return true */
+/* O functie recursiva care rezolva problema celor N regine */
+int solveNQUtil(int board[N][N], int col) {
+    /* daca toate reginele sunt plasate return true */
     if (col >= N)
         return true;
 
-    /* Consider this column and try placing
-       this queen in all rows one by one */
-    for (int i = 0; i < N; i++)
-    {
-        /* Check if queen can be placed on
-          board[i][col] */
-        if ( isSafe(board, i, col) )
-        {
-            /* Place this queen in board[i][col] */
+    /* Incercam sa plasam o regina pe coloana "col"*/
+    for (int i = 0; i < N; i++) {
+        /* Verifica daca pot plasa regina pe pozitia board[i][col] */
+        if ( isSafe(board, i, col) ) {
+            /* plasez regina pe pozitia board[i][col] */
             board[i][col] = 1;
 
-            /* recur to place rest of the queens */
+            /* apel recursiv pentru a plasa restul de regine */
             if ( solveNQUtil(board, col + 1) )
                 return true;
 
-            /* If placing queen in board[i][col]
-               doesn't lead to a solution, then
-               remove queen from board[i][col] */
+            /* daca plasarea reginei pe pozitie  board[i][col]
+               nu a condus la o solutie atunci luam regina 
+               de pe pozitia board[i][col] */
             board[i][col] = 0; // BACKTRACK
         }
     }
 
-     /* If queen can not be place in any row in
-        this colum col  then return false */
+     /* Daca regina nu poate fi plasata pe nici un rand de pe coloana "col" 
+     return false */
     return false;
 }
 
-/* This function solves the N Queen problem using
-   Backtracking. It mainly uses solveNQUtil() to
-   solve the problem. It returns false if queens
-   cannot be placed, otherwise return true and
-   prints placement of queens in the form of 1s.
-   Please note that there may be more than one
-   solutions, this function prints one  of the
-   feasible solutions.*/
-int solveNQ()
-{
+/*  O functie care rezolva problema celor N regine prin
+    metoda backtracking. functia returneaza false daca
+    nu se pot plasa reginele astfel incat sa nu se atace
+    si true in caz contrar, caz in care printeaza solutia
+*/
+int solveNQ() {
     int board[N][N] = { {0, 0, 0, 0},
         {0, 0, 0, 0},
         {0, 0, 0, 0},
         {0, 0, 0, 0}
     };
 
-    if ( solveNQUtil(board, 0) == false )
-    {
-      printf("Solution does not exist");
+    if ( solveNQUtil(board, 0) == false ) {
+      printf("Nu exista solutie!!!");
       return false;
     }
 
@@ -108,9 +91,8 @@ int solveNQ()
     return true;
 }
 
-// driver program to test above function
-int main()
-{
+// driver program 
+int main() {
     solveNQ();
     return 0;
 }

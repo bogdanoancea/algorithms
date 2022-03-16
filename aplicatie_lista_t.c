@@ -27,8 +27,8 @@ int main() {
     insert(L, first(L), &elemente[4]);
     printf("Dimensiunea listei : %d\n", size(L));
     Iterator pos = find(L, &elemente[2], &equal);
-    if(pos != last(L))
-        printf("Am gasit in lista elementul: %d\n", elemente[2]);
+    if(pos != last_test(L))
+        printf("Am gasit in lista elementul: %d %d\n", pos, elemente[2]);
 
     printf("Elementele listei sunt:\n");
     Iterator el;

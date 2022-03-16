@@ -70,7 +70,7 @@ int main(int argc, const char * argv[]) {
     }
 
 
-    //cauta elementul cu valoare 4 in lista
+    //cauta elementul cu valoarea 4 in lista
     int x = 4;
     if(find(L, &x, egal_int))
         printf("Elementul cu valoarea %d se afla in lista\n", x);
