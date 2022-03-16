@@ -58,7 +58,8 @@ void *deq(Queue Q){
      Q->first = Q->first->next;
      if(Q->first == 0)
         Q->last = 0;
-     free(del);
+     free(del->data);
+	 free(del);
      Q->length--;
      return x;
 }
